@@ -1,11 +1,16 @@
-import { MapPin, Cloud } from "lucide-react";
+import { MapPin, Cloud, Trash2 } from "lucide-react";
 const Card = () => {
   return (
     <div>
       <div className="w-72 h-72 bg-gradient-to-r from-white via-blue-50 to-indigo-100 shadow-2xl rounded p-4">
-        <div className="flex gap-2">
-          <MapPin className="text-indigo-400" />
-          <div className="font-bold">Stuttgart</div>
+        <div className="flex justify-between">
+          <div className="flex gap-2">
+            <MapPin className="text-indigo-400" />
+            <div className="font-bold">Stuttgart</div>
+          </div>
+          <div>
+            <Trash2 className="text-red-400" />
+          </div>
         </div>
         <div className="flex items-center mt-5 gap-8">
           <div className="text-6xl font-bold text-red-500">
