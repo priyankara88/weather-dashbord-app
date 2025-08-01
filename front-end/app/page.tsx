@@ -1,5 +1,6 @@
 import { CloudSun } from "lucide-react";
 import Search from "./Search";
+import Card from "./Card";
 
 const page = () => {
   return (
@@ -20,8 +21,17 @@ const page = () => {
         </p>
       </div>
       <div className="pl-20 pr-20 ">
-        <div>
-          <Search />
+        <Search />
+        <div className="mt-5 flex flex-wrap gap-10 items-center ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
     </div>
