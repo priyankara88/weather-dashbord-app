@@ -6,3 +6,6 @@ dist/
 # Next.js
 .next/
 out/
+
+# macOS
+.DS_Store

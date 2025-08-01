@@ -1,4 +1,5 @@
 import { CloudSun } from "lucide-react";
+import Search from "./Search";
 
 const page = () => {
   return (
@@ -12,11 +13,16 @@ const page = () => {
             Weather Dashbord
           </h1>
         </div>
-        <p className="my-7 text-[18px] font-bold text-gray-500">
+        <p className="mt-7 text-[18px] font-bold text-gray-500">
           Stay updated with weather information from cities around the world.
           Add your favorite locations and monitor weather conditions at a
           glance.
         </p>
+      </div>
+      <div className="pl-20 pr-20 ">
+        <div>
+          <Search />
+        </div>
       </div>
     </div>
   );
