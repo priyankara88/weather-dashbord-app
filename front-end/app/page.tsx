@@ -1,8 +1,34 @@
+"use client";
 import { CloudSun } from "lucide-react";
 import Search from "./components/Search";
 import Card from "./components/Card";
+import { useEffect, useState } from "react";
 
+export interface City {
+  name: string;
+  country: string;
+  latitude: number;
+  longitude: number;
+}
 const page = () => {
+  const [searchInput, setSearchInput] = useState<string>("");
+  const [fetchCities, setFetchCities] = useState<City[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, [searchInput]);
+
+  const fetchData = async () => {
+    const result = await fetch(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${searchInput}&count=5`
+    );
+    const data = await result.json();
+    const cities = data.results || [];
+
+    setFetchCities(cities);
+    console.log(18, cities);
+  };
+
   return (
     <div className="w-full h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <div className="flex flex-col items-center justify-center p-10">
@@ -21,7 +47,11 @@ const page = () => {
         </p>
       </div>
       <div className="pl-20 pr-20 ">
-        <Search />
+        <Search
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          fetchCities={fetchCities}
+        />
         <div className="mt-5 flex flex-wrap gap-10 items-center ">
           <Card />
           <Card />
