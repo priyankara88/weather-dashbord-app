@@ -1,9 +1,10 @@
 import { Router } from "express";
+import * as widgetController from "../controllers/widgetController";
 
 const router = Router();
 
-router.get("/");
-router.post("/");
-router.delete("/:id");
+router.get("/", widgetController.getAllWidgets);
+router.post("/", widgetController.createWidget);
+router.delete("/:id", widgetController.deleteWidget);
 
 export default router;
