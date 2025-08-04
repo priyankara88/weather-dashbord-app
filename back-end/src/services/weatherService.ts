@@ -1,4 +1,6 @@
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 interface CachedWeather {
   timestamp: number;
@@ -15,7 +17,7 @@ export const getWeather = async (location: string) => {
   }
 
   const response = await axios.get(
-    `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true`
+    `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.WEATHER_API_KEY}&units=metric`
   );
 
   const data = response.data;

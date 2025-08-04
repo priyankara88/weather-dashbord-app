@@ -3,31 +3,32 @@ import { CloudSun } from "lucide-react";
 import Search from "./components/Search";
 import Card from "./components/Card";
 import { useEffect, useState } from "react";
+import useSearchWeather from "./utill/useSearchWeather";
+import useGetSavedWeather from "./utill/useGetSavedWeather";
+import { Widgets_URL } from "./utill/constants";
 
-export interface City {
-  name: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-}
 const page = () => {
+  const [countryName, setCountryName] = useState<string>("");
+  const [weatherData, setWeatherData] = useState<any[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
-  const [fetchCities, setFetchCities] = useState<City[]>([]);
+
+  const StoreweatherData = useGetSavedWeather();
 
   useEffect(() => {
-    fetchData();
-  }, [searchInput]);
+    for (const item of StoreweatherData) {
+      const getWeatherData = async () => {
+        const response = await fetch(Widgets_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ location: item.location }),
+        });
+        const wetherData = await response.json();
 
-  const fetchData = async () => {
-    const result = await fetch(
-      `https://geocoding-api.open-meteo.com/v1/search?name=${searchInput}&count=5`
-    );
-    const data = await result.json();
-    const cities = data.results || [];
-
-    setFetchCities(cities);
-    console.log(18, cities);
-  };
+        setWeatherData((prev) => [...prev, wetherData]);
+      };
+      getWeatherData();
+    }
+  }, [StoreweatherData]);
 
   return (
     <div className="w-full h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -48,20 +49,32 @@ const page = () => {
       </div>
       <div className="pl-20 pr-20 ">
         <Search
-          searchInput={searchInput}
+          setCountryName={setCountryName}
           setSearchInput={setSearchInput}
-          fetchCities={fetchCities}
+          searchInput={searchInput}
+          countryName={countryName}
+          weatherData={weatherData}
+          setWeatherData={setWeatherData}
         />
         <div className="mt-5 flex flex-wrap gap-10 items-center ">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <div className="mt-5 flex flex-wrap gap-10 items-center">
+            {weatherData.slice(1).length > 0 ? (
+              weatherData
+                .slice(1)
+                .map((weatherData, index) => (
+                  <Card
+                    key={index}
+                    weatherData={weatherData}
+                    setWeatherData={setWeatherData}
+                    setSearchInput={setSearchInput}
+                  />
+                ))
+            ) : (
+              <p className="text-lg text-gray-400 font-semibold items-center ">
+                No cities added yet. Try adding a city!
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

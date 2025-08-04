@@ -1,19 +1,34 @@
-import { City } from "../page";
+import { useEffect, useState } from "react";
+import useSearchCity from "../utill/useSearchCity";
+import useSearchWeather from "../utill/useSearchWeather";
 
-interface ISearchProps {
+interface ICountryName {
+  setCountryName: React.Dispatch<React.SetStateAction<string>>;
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   searchInput: string;
-  fetchCities: City[];
-  setSearchInput: (value: string) => void;
+  countryName: string;
+  weatherData: any;
+  setWeatherData: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-const Search: React.FC<ISearchProps> = ({
+const Search: React.FC<ICountryName> = ({
+  setCountryName,
   setSearchInput,
   searchInput,
-  fetchCities,
+  countryName,
+  weatherData,
+  setWeatherData,
 }) => {
+  const fetchCities = useSearchCity(searchInput);
   const handleSearchCities = (inputValue: string) => {
     setSearchInput(inputValue);
   };
+
+  const handleWidgets = () => {
+    setCountryName(searchInput);
+  };
+
+  useSearchWeather({ countryName, weatherData, setWeatherData });
 
   return (
     <div className="text-black">
@@ -27,7 +42,10 @@ const Search: React.FC<ISearchProps> = ({
             handleSearchCities(e.target.value);
           }}
         />
-        <button className="w-44 h-12 rounded font-bold text-white bg-gradient-to-r from-blue-300 to-indigo-600 cursor-pointer  ">
+        <button
+          className="w-44 h-12 rounded font-bold text-white bg-gradient-to-r from-blue-300 to-indigo-600 cursor-pointer"
+          onClick={(e) => handleWidgets()}
+        >
           + Add Widget
         </button>
       </div>
@@ -45,7 +63,7 @@ const Search: React.FC<ISearchProps> = ({
             ))}
           </ul>
         ) : (
-          <h1>No results found</h1>
+          ""
         )}
       </div>
     </div>
