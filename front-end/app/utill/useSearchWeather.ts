@@ -5,17 +5,20 @@ interface IWeatherData {
   countryName: string;
   weatherData: string[];
   setWeatherData: React.Dispatch<React.SetStateAction<any[]>>;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const useSearchWeather = ({
   countryName,
   weatherData,
   setWeatherData,
+  setLoading,
 }: IWeatherData) => {
   useEffect(() => {
     getWeatherData();
   }, [countryName]);
 
   const getWeatherData = async () => {
+    setLoading(true);
     const response = await fetch(Widgets_Save, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -23,6 +26,7 @@ const useSearchWeather = ({
     });
     const wetherData = await response.json();
     setWeatherData((prev) => [...prev, wetherData]);
+    setLoading(false);
   };
 
   return weatherData;

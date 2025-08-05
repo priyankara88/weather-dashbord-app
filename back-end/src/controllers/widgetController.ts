@@ -31,8 +31,6 @@ export const createWidget = async (req: Request, res: Response) => {
 };
 
 export const deleteWidget = async (req: Request, res: Response) => {
-  console.log(21, req);
-
   await Widget.findByIdAndDelete(req.params.id);
   res.status(204).end();
 };

@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import useSearchWeather from "./utill/useSearchWeather";
 import useGetSavedWeather from "./utill/useGetSavedWeather";
 import { Widgets_URL } from "./utill/constants";
+import WeatherShimmer from "./components/WeatherShimmer";
 
 const page = () => {
   const [countryName, setCountryName] = useState<string>("");
   const [weatherData, setWeatherData] = useState<any[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const StoreweatherData = useGetSavedWeather();
 
@@ -55,6 +57,7 @@ const page = () => {
           countryName={countryName}
           weatherData={weatherData}
           setWeatherData={setWeatherData}
+          setLoading={setLoading}
         />
         <div className="mt-5 flex flex-wrap gap-10 items-center ">
           <div className="mt-5 flex flex-wrap gap-10 items-center">
@@ -74,6 +77,8 @@ const page = () => {
                 No cities added yet. Try adding a city!
               </p>
             )}
+
+            {loading && <WeatherShimmer />}
           </div>
         </div>
       </div>
