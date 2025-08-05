@@ -77,7 +77,6 @@ const page = () => {
                 No cities added yet. Try adding a city!
               </p>
             )}
-
             {loading && <WeatherShimmer />}
           </div>
         </div>

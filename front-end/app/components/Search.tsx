@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useSearchCity from "../utill/useSearchCity";
 import useSearchWeather from "../utill/useSearchWeather";
-import { ICountryName } from "../types/ICountryName";
+import { ICountryName } from "../types/ICountry";
 
 const Search: React.FC<ICountryName> = ({
   setCountryName,
