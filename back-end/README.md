@@ -6,6 +6,8 @@ This is the **Back-End API** for the Weather Dashboard application. It fetches r
 
 ## Project Structure
 
+---
+
 back-end/
 ├── src/
 │ ├── controllers/
@@ -33,8 +35,6 @@ back-end/
 ```bash
 cd back-end
 npm install
-
-
 
 
 PORT=5000
