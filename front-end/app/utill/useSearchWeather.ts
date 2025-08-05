@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { Widgets_Save } from "./constants";
+import { IWeatherData } from "../types/IWeatherFetch";
 
-interface IWeatherData {
-  countryName: string;
-  weatherData: string[];
-  setWeatherData: React.Dispatch<React.SetStateAction<any[]>>;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
 const useSearchWeather = ({
   countryName,
   weatherData,
@@ -28,7 +23,6 @@ const useSearchWeather = ({
     setWeatherData((prev) => [...prev, wetherData]);
     setLoading(false);
   };
-
   return weatherData;
 };
 

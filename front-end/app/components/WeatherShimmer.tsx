@@ -3,7 +3,7 @@ import React from "react";
 const WeatherShimmer = () => {
   return (
     <div className="relative p-6 mb-8 overflow-hidden rounded-xl shadow-md bg-gradient-to-r from-blue-50 to-indigo-100">
-      <div className="w-72 h-72 rounded p-4 relative">
+      <div className="w-60 h-60 rounded p-4 relative">
         <div className="flex justify-between items-center mb-4">
           <div className="flex gap-2 items-center">
             <div className="w-6 h-6 rounded-full bg-indigo-200"></div>

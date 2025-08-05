@@ -3,11 +3,8 @@ import React from "react";
 import { getTemperatureColor } from "../utill/GetTemperatureColor";
 import { getWeatherIcon } from "../utill/GetWeatherIcon";
 import { DELETE_URL } from "../utill/constants";
-interface IWeatherData {
-  weatherData: string[];
-  setWeatherData: React.Dispatch<React.SetStateAction<any[]>>;
-  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
-}
+import { IWeatherData } from "../types/IWeather";
+
 const Card: React.FC<IWeatherData> = ({
   weatherData,
   setWeatherData,
@@ -28,10 +25,6 @@ const Card: React.FC<IWeatherData> = ({
 
       setWeatherData((prev) => prev.filter((data) => data.widget?._id !== id));
       setSearchInput("");
-
-      const text = await response.text();
-      const data = text ? JSON.parse(text) : null;
-      console.log("Deleted:", data);
     } catch (error) {
       console.error("Error deleting widget:", error);
     }

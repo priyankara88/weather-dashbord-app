@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import { GEOLOCATION_API_URL } from "./constants";
+import { City } from "../types/ISearchFetch";
 
-interface City {
-  name: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-}
 const useSearchCity = (searchInput: string) => {
   const [fetchCities, setFetchCities] = useState<City[]>([]);
 

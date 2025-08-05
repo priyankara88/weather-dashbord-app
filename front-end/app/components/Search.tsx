@@ -1,16 +1,7 @@
 import { useEffect, useState } from "react";
 import useSearchCity from "../utill/useSearchCity";
 import useSearchWeather from "../utill/useSearchWeather";
-
-interface ICountryName {
-  setCountryName: React.Dispatch<React.SetStateAction<string>>;
-  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
-  searchInput: string;
-  countryName: string;
-  weatherData: any;
-  setWeatherData: React.Dispatch<React.SetStateAction<any[]>>;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { ICountryName } from "../types/ICountryName";
 
 const Search: React.FC<ICountryName> = ({
   setCountryName,
