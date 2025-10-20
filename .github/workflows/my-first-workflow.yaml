@@ -26,6 +26,6 @@ jobs:
         uses: codespell-project/actions-codespell@v2 # FREE tool!
         with:
           # Check these file types
-          path: README.md,**.md,**.txt,**.rst,**.py,**.js,**.yml
+          path: README.md,**.md,**.txt,**.rst,**.py,**.jsx,**tsx,**.yml
           # Ignore common false positives
           ignore: foobar,lint,linter
