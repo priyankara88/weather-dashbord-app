@@ -11,7 +11,7 @@ A responsive weather dashboard built with **Next.js** and **TypeScript** that al
 - Delete widgets to remove cities
 - In-memory or file-based caching (via backend)
 - Clean and modern UI with **Tailwind CSS**
-- Supports multiple cities (e.g. Berlin, Hamburg, Paris)
+- Supports multiple cities (e.g. Stuttgart,Göppingen)
 
 ---
 

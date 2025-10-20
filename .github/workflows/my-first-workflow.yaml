@@ -1,0 +1,31 @@
+name: CI with Spelling Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Your original job (build/test)
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests (if you have them)
+        run: echo "Tests passed!"
+
+  # NEW: Spelling check job
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run spelling check
+        uses: codespell-project/actions-codespell@v2 # FREE tool!
+        with:
+          # Check these file types
+          path: README.md,**.md,**.txt,**.rst,**.py,**.js,**.yml
+          # Ignore common false positives
+          ignore: foobar,lint,linter
