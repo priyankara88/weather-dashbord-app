@@ -12,7 +12,7 @@ A full-stack weather dashboard application built using **Next.js** (frontend) an
 ├── README.md # Monorepo overview (this file)
 └── ..
 
-## Front-End
+## Frond-End
 
 **Tech Stack:** Next.js, React, Tailwind CSS, TypeScript  
 **Features:**
